@@ -1,3 +1,14 @@
+const initialBoard = [
+    ["♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜"],
+    ["♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟"],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙"],
+    ["♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖"]
+];
+
 document.addEventListener("DOMContentLoaded", function () {
     const board = document.getElementById("chessboard");
 
@@ -6,14 +17,22 @@ document.addEventListener("DOMContentLoaded", function () {
             let square = document.createElement("div");
             square.classList.add("square");
 
-            // Alter Colors
             if ((row + col) % 2 === 0) {
                 square.classList.add("light");
             } else {
                 square.classList.add("dark");
             }
-
+            
+            let piece = initialBoard[row][col];
+            if (piece !== "") {
+                let pieceElement = document.createElement("span");
+                pieceElement.textContent = piece;
+                pieceElement.classList.add("piece");
+                square.appendChild(pieceElement);
+            }
+            
             board.appendChild(square);
         }
     }
 });
+
